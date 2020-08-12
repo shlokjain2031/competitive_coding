@@ -1,0 +1,52 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class MAXMEX {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int t = 0;
+    if(sc.hasNextInt()) {
+      t = sc.nextInt();
+    }
+
+    while(t-->0) {
+      int n=sc.nextInt();
+			int m=sc.nextInt();
+			
+			ArrayList<Integer> arr=new ArrayList<>();
+			for(int i=0;i<n;i++) {
+				arr.add(sc.nextInt());
+			}
+			
+			HashSet<Integer> set=new HashSet<>();
+			int check;
+			int maxlength;
+			for(int i=0;i<arr.size();i++) {
+				set.add(arr.get(i));
+			}
+				
+			check=mex(set);
+			if(check==m) {
+				maxlength=arr.size();
+			}
+			if(check<m) {
+				maxlength=-1;
+			}
+			else {
+				maxlength=arr.size()-Collections.frequency(arr, m);
+			}
+							
+			System.out.println(maxlength);
+    }
+    sc.close();
+  }
+
+  private static int mex(HashSet<Integer> set) {
+		int mex=1;
+		while(set.contains(mex)) {
+			mex++;
+		}
+		return mex;
+	}
+}
