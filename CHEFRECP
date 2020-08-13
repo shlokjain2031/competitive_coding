@@ -1,0 +1,61 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class CHEFRECP {
+  public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            int t = 0;
+            if(sc.hasNextInt()) {
+              t = sc.nextInt();
+            }
+            while (t-->0){
+                int n = sc.nextInt();
+                int temp = 0;
+                int check = 0;
+                int a[] = new int[100001];
+                boolean used[] = new boolean[100001];
+                int arr[] = new int[n];
+                for(int i=0;i<n;i++) {
+                  arr[i] = sc.nextInt();
+                }
+                for(int i=0;i<n;i++) {
+                    int ndx = arr[i];
+                    if (i==0) 
+                        temp=ndx;
+                    if (temp != ndx) {
+                        used[temp]=true;
+                    }
+                    if (used[ndx]) {
+                        check=1;
+                        break;
+                    }
+                    else {
+                      a[ndx]++;
+                    }
+                    temp = ndx;
+                }
+                if (check==0) {
+                  boolean count[] = new boolean[10*n+1];
+                  for(int i=0;i<100001;i++){
+                    if (a[i]!=0) {
+                      if(count[a[i]]) {
+                          check=1;
+                          break;
+                      }
+                      else {
+                        count[a[i]]=true;
+                      }
+                    }
+                  }
+                }
+
+                if (check==1) {
+                    System.out.println("NO");
+                }
+                else {
+                    System.out.println("YES");
+                }
+            }
+        }
+}
